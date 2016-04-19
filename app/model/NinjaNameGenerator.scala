@@ -10,7 +10,7 @@ object NinjaNameGenerator {
     'w' -> "mei", 'x' -> "na", 'y'-> "fu", 'z' -> "zi", ' ' -> " ").withDefaultValue("")
 
   def generate(fullName: String):String = {
-    fullName.split(" ").map { name =>
+    fullName split " " map { name =>
       name.toLowerCase.foldLeft("") { (acc,ch) =>
         acc + toNinja(ch)
       } capitalize
