@@ -1,0 +1,25 @@
+package controllers
+
+import play.api._
+import play.api.mvc._
+
+class Application extends Controller {
+
+  val toNinja = Map('a' -> "ka", 'b' -> "zu", 'c' -> "mi", 'd' -> "te",'e' -> "ku", 'f' -> "lu",
+'g' -> "ji", 'h' -> "ri", 'l' -> "ki", 'j' -> "zu", 'k' -> "me", 'l' -> "ta", 'n' -> "to", 'o' -> "mo",
+'p' -> "no", 'q' -> "ke", 'r' -> "shi", 's' -> "ari", 't' -> "chi", 'u' -> "do", 'v' -> "ru",
+'w' -> "mei", 'x' -> "na", 'y'-> "fu", 'z' -> "zi")  
+
+  def index = Action {
+    Ok(views.html.index("Your new application is ready."))
+  }
+
+  def ninja(name:String) = Action {
+    val ninjaName = for {
+        letter <- name.toLowerCase
+        ninjaSilable <- toNinja.get(letter)    
+    } yield ninjaSilable
+    Ok(ninjaName.mkString)
+  }
+
+}
