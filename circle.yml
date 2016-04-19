@@ -27,4 +27,5 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/test-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - sbt dist
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - sbt docker:publish
