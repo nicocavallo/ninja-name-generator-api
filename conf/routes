@@ -5,6 +5,3 @@
 # Home page
 GET     /healthcheck                controllers.Application.healthCheck
 GET     /user/:name/ninja           controllers.Application.ninja(name: String)
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
