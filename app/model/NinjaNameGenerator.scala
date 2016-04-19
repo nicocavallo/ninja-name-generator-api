@@ -9,10 +9,12 @@ object NinjaNameGenerator {
     'p' -> "no", 'q' -> "ke", 'r' -> "shi", 's' -> "ari", 't' -> "chi", 'u' -> "do", 'v' -> "ru",
     'w' -> "mei", 'x' -> "na", 'y'-> "fu", 'z' -> "zi", ' ' -> " ").withDefaultValue("")
 
-  def generate(name: String):String = {
-    name.toLowerCase.foldLeft("") { (acc,ch) =>
-      acc + toNinja(ch)
-    } capitalize
+  def generate(fullName: String):String = {
+    fullName.split(" ").map { name =>
+      name.toLowerCase.foldLeft("") { (acc,ch) =>
+        acc + toNinja(ch)
+      } capitalize
+    } mkString " "
   }
 
 }
