@@ -1,6 +1,16 @@
 language: scala
-jdk:
- - - openjdk8
-before_script:
+
+scala:
+  - 2.11.5
+
+script:
+  - export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
+  - sbt clean test
+
+after_script:
   - mkdir -p shippable/testresults
-  - ln -s ../target/test-reports shippable/testresults
+  - mv target/test-reports/*.xml shippable/testresults/
+
+notifications:
+  email:
+    - nicolas.cavallo@gmail.com
