@@ -5,11 +5,13 @@ scala:
 
 script:
   - export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
-  - sbt clean test
+  - sbt clean coverage test coverageReport
 
 after_script:
   - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
   - mv target/test-reports/*.xml shippable/testresults/
+  - mv target/scala-2.11/coverage-report/cobertura.xml shippable/codecoverage/
 
 notifications:
   email:
