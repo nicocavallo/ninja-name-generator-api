@@ -17,7 +17,7 @@ after_script:
 notifications:
   email:
     - nicolas.cavallo@gmail.com
-
+# Let's see how it goes.
 integrations:
     hub:
       - integrationName: DockerHub
