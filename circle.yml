@@ -2,6 +2,8 @@ machine:
   timezone: UTC
   java:
     version: oraclejdk8
+  services:
+    - docker
 
 # Collect build artifacts
 general:
@@ -27,4 +29,5 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/test-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - sbt dist
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - sbt docker:publish
