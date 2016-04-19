@@ -4,4 +4,4 @@
 
 # Home page
 GET     /healthcheck                controllers.Application.healthCheck
-GET     /user/:name/ninja           controllers.Application.ninja(name: String)
+GET     /ninjaName/forUser/:name    controllers.Application.ninja(name: String)
