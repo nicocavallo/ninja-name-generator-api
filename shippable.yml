@@ -12,7 +12,13 @@ after_script:
   - mkdir -p shippable/codecoverage
   - mv target/test-reports/*.xml shippable/testresults/
   - mv target/scala-2.11/coverage-report/cobertura.xml shippable/codecoverage/
+  - sbt docker:publish
 
 notifications:
   email:
     - nicolas.cavallo@gmail.com
+# Let's see how it goes.
+integrations:
+    hub:
+      - integrationName: DockerHub
+        type: docker
