@@ -30,5 +30,5 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/test-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - docker build -t $DOCKER_USER/ninja-name-generator-api:$CIRCLE_SHA1 target/docker/stage/
+    - docker build -t $DOCKER_USER/ninja-name-generator-api:${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:5} target/docker/stage/
     - docker push $DOCKER_USER/ninja-name-generator-api
