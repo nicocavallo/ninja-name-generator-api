@@ -19,7 +19,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
 
-dockerRepository := Some("nicoofficeserve")
+dockerRepository := Some("officeserve")
 
 coverageExcludedPackages := "<empty>;router\\..*;Reverse.*;.*AuthService.*;models\\.data\\..*"
 // fork in run := true

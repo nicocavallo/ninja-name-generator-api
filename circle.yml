@@ -24,10 +24,11 @@ dependencies:
 
 test:
   override:
-    - sbt test
+    - sbt clean test docker:stage
   # Copy test reports to Circle test reports dir then package app for deploy
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/test-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - sbt docker:publish
+    - docker build -t $DOCKER_USER/ninja-name-generator-api:$CIRCLE_SHA1 target/docker/stage/
+    - docker push $DOCKER_USER/ninja-name-generator-api
