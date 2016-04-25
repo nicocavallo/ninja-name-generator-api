@@ -38,3 +38,9 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
       - docker build -t $DOCKER_USER/ninja-name-generator-api:${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:5} target/docker/stage/
       - docker push $DOCKER_USER/ninja-name-generator-api
+
+## Custom notifications
+# notify:
+  # webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    # - url: https://someurl.com/hooks/circle
