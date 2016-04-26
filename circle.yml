@@ -29,7 +29,7 @@ local\n
 my-ivy-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]\n
 my-maven-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy1/' > ~/.sbt/repositories"
     - mkdir -p ~/.sbt/0.13/plugins
-    - echo 'Credentials("Artifactory Realm","artifactorylb-130644380.eu-west-1.elb.amazonaws.com",sys.env("ARTIFACTORY_USER"),sys.env("ARTIFACTORY_PASSWORD"))' > ~/.sbt/0.13/plugins/credentials.sbt
+    - echo 'credentials += Credentials("Artifactory Realm","artifactorylb-130644380.eu-west-1.elb.amazonaws.com",sys.env("ARTIFACTORY_USER"),sys.env("ARTIFACTORY_PASSWORD"))' > ~/.sbt/0.13/plugins/credentials.sbt
   override:
     - sbt test:compile
 
