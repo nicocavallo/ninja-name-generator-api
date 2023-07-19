@@ -31,11 +31,14 @@ jobs:
     - name: Run tests
       run: sbt test
     
-    - name: Build and Push Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/ninja-name-generator-api:${{ github.sha }} .
+    
+    - name: Push Docker image to Docker Hub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build -t nicocavallo/ninja-name-generator-api:${{ github.sha }} .
         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        docker push nicocavallo/ninja-name-generator-api:${{ github.sha }}  
+        docker push ${{ secrets.DOCKER_USERNAME }}/ninja-name-generator-api:${{ github.sha }}
