@@ -5,7 +5,7 @@ COPY . .
 RUN sbt clean update compile assembly
 
 # Stage 2: create the Docker image
-FROM eclipse-temurin:17
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=builder /app/target/scala-3.3.0/*.jar ./app.jar
 EXPOSE 8080
