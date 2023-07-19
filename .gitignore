@@ -24,3 +24,4 @@ project/plugins/project/
 .metals
 .bsp
 .bloop
+**/metals.sbt
