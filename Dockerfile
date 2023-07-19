@@ -7,6 +7,6 @@ RUN sbt clean update compile assembly
 # Stage 2: create the Docker image
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=builder /target/scala-3.3.0/*.jar ./app.jar
+COPY --from=builder /app/target/scala-3.3.0/*.jar ./app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
