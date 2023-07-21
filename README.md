@@ -8,3 +8,10 @@ sbt clean compile
 ```bash
 sbt test
 ```
+### Assembly & Run locally
+
+```bash
+sbt clean update compile assembly
+```
+#### Run locally
+_TBC_
