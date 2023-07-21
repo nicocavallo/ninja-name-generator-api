@@ -14,4 +14,4 @@ sbt test
 sbt clean update compile assembly
 ```
 #### Run locally
-_TBC_
+_Still TBC_
