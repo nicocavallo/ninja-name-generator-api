@@ -19,7 +19,7 @@ lazy val root = (project in file("."))
       "ch.qos.logback"  %  "logback-classic"     % LogbackVersion,
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    assembly / mainClass := Some("nico.ninjanamegeneratorapi.Main"),
+    assembly / mainClass := Some("cavallo.nico.ninjanamegeneratorapi.Main"),
     assembly / assemblyMergeStrategy := {
       case x if x.endsWith("module-info.class") => MergeStrategy.discard
       case x =>
