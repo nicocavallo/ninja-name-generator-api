@@ -36,7 +36,6 @@ jobs:
   build:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: [test]
     steps:
     - uses: actions/checkout@v3
 
@@ -60,6 +59,12 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/ninja-name-generator-api:${{ github.sha }} .
     
+    - name: Check if tests succeeded
+      if: failure() || needs.test.result != 'success'
+      run: |
+       echo "Tests failed. Aborting Docker image push."
+       exit 1
+            
     - name: Push Docker image to Docker Hub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
