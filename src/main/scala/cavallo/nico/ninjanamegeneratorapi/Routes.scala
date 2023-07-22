@@ -19,3 +19,10 @@ object Routes:
           resp <- Ok(ninjaName)
         } yield resp
     }
+
+  def health[F[_]: Sync]: HttpRoutes[F] = 
+    val dsl = new Http4sDsl[F]{}
+    import dsl.*
+    HttpRoutes.of[F] {
+      case GET -> Root / "health" => Ok("Ok")
+    }

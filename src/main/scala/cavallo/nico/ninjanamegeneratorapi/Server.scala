@@ -12,14 +12,16 @@ import org.http4s.server.middleware.Logger
 object Server:
 
   def run[F[_]: Async: Network]: F[Nothing] = {
-    val httpApp = Routes.ninjaNameRoutes[F](NinjaNameGenerator.impl[F]).orNotFound
+    // Combine Service Routes into an HttpApp.
+    // Can also be done via a Router if you
+    // want to extract segments not checked
+    // in the underlying routes.
+    val httpApp = (Routes
+    .ninjaNameRoutes[F](NinjaNameGenerator.impl[F]) <+> Routes.health[F])
+    .orNotFound
     // With Middlewares in place
     val finalHttpApp = Logger.httpApp(true, true)(httpApp) 
     for {
-      // Combine Service Routes into an HttpApp.
-      // Can also be done via a Router if you
-      // want to extract segments not checked
-      // in the underlying routes.
       _ <- 
         EmberServerBuilder.default[F]
           .withHost(ipv4"0.0.0.0")
