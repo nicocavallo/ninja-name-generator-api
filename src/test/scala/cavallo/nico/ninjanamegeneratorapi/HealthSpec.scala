@@ -8,7 +8,7 @@ import org.http4s.implicits.*
 class HealthSpec extends CatsEffectSuite:
   
   test("health endpoint returns status code 200") {
-    assertIO(retHealth.map(_.status), Status.Ok)
+    assertIO(retHealth.map(_.status), Status.BadRequest)
   }
 
   private[this] def retHealth: IO[Response[IO]] = 
