@@ -60,6 +60,7 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/ninja-name-generator-api:${{ github.sha }} .
     
     - name: Push Docker image to Docker Hub
+      if: success() && needs.test.result == 'success'
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
