@@ -58,14 +58,9 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/ninja-name-generator-api:${{ github.sha }} .
-    
-    - name: Check if tests succeeded
-      if: failure()
-      run: |
-       echo "Tests failed. Aborting Docker image push."
-       exit 1
             
     - name: Push Docker image to Docker Hub
+      if:  success() && needs.test.result == 'success'
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
