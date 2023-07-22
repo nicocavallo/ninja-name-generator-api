@@ -61,7 +61,7 @@ jobs:
     
     - name: Check if tests succeeded
       run: |
-        if [ "${{ needs.test.result }}" != "success" ]; then
+        if [ "${{ success() }}" != "True" ]; then
           echo "Tests failed. Aborting Docker image push."
           exit 1
         fi
